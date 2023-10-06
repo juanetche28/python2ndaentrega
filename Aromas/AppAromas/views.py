@@ -5,7 +5,7 @@ from AppAromas.models import  Products, Users, Carts
 from AppAromas.forms import ProductForm, CartForm, UserForm, BuscaProductForm
 
 # Create your views here.
-def inicio(request):
+def home(request):
     return render(request, "AppAromas/index.html")
 
 def productsForm(request):
@@ -51,28 +51,28 @@ def usersForm(request):
     return render(request, "AppAromas/usersForm.html", {"miFormulario": miFormulario})
        
 
-def buscar_form_con_api(request):
+def search(request):
     if request.method == "POST":
         miFormulario = BuscaProductForm(request.POST) # Aqui me llega la informacion del html
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             
-            products = Products.objects.filter(category__icontains=informacion["category"])
+            products = Products.objects.filter(category__icontains=informacion["product"])
 
-            return render(request, "AppCoder/resultados_buscar_form.html", {"cursos": cursos})
+            return render(request, "AppAromas/search_results.html", {"products": products})
     else:
-        miFormulario = BuscaCursoForm()
+        miFormulario = BuscaProductForm()
 
-    return render(request, "AppCoder/buscar_form_con_api.html", {"miFormulario": miFormulario})
+    return render(request, "AppAromas/search.html", {"miFormulario": miFormulario})
 
-def mostrar_cursos(request):
+def show_products(request):
 
-    cursos = Curso.objects.all() #trae todos los profesores
+    products = Products.objects.all() #trae todos los productos
 
-    contexto= {"cursos":cursos} 
+    contexto= {"products":products} 
 
-    return render(request, "AppCoder/mostrar_cursos.html",contexto)
+    return render(request, "AppAromas/show_products.html",contexto)
 
 
 

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>productsForm</title>
-</head>
-<body>
+{% extends 'AppAromas/padre.html' %}
+
+{% block title %} Carts {% endblock title %}
+
+{% block main %}
 
     {% if miFormulario.errors %}
     <p style="color: red;">Estan mal los datos, revisar</p>
     {% endif %}
-
 
     <form action="" method="POST">{% csrf_token %}
 
@@ -19,5 +15,5 @@
         </table>
         <input type="submit" value="Save Product">
     </form>
-</body>
-</html>
+
+{% endblock main %}

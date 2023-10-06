@@ -1,0 +1,26 @@
+{% extends 'AppAromas/padre.html' %}
+
+{% block title %} Lista de todos los Productos {% endblock title %}
+
+{% block main %}
+
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Shop in Aromas en el Alma</h1>
+                <p class="lead fw-normal text-white-50 mb-0">We have the best prices on the market.</p>
+            </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <br>
+    <br>
+    <p style="font-style: italic;">Products List</p>
+
+    {% for product in products %}
+    <li>{{ product.title }}, {{ product.code }}, {{ product.category }} </li>
+    {% endfor %}
+    <br>
+
+{% endblock main %}
